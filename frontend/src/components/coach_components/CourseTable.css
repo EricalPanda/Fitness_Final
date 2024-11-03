@@ -1,0 +1,32 @@
+/* Body Background */
+.background-body {
+    background: #000;
+    height: 100%;
+    min-height: 100vh;
+    padding: 30px 0;
+}
+
+.custom-header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white !important;
+}
+
+.course-table {
+    background-color: #121212 !important;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+button:hover {
+    background-color: #6fa8dc;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}

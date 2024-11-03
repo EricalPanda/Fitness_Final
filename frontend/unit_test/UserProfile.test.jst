@@ -1,0 +1,184 @@
+import React from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import axios from 'axios';
+import UserProfile from '../src/components/user-components/UserProfile';
+import { fetchUserProfile } from '../src/services/userService';
+
+// Mock axios and the fetchUserProfile function
+jest.mock('axios');
+jest.mock('../src/services/userService.js');
+
+describe('UserProfile Component', () => {
+    const mockProfile = {
+        name: 'Nhat Kim',
+        email: 'nhatnk.sw@gmail.com',
+        gender: 'Male',
+        dob: '2002-01-01',
+        phone: '0987654456',
+        address: 'Dien Ban, Quang Nam',
+        password: 'currentPassword123', // Mock the current password for testing
+    };
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+        localStorage.setItem('token', 'testToken');
+    });
+
+    // test('renders loading indicator while fetching profile', async () => {
+    //     fetchUserProfile.mockImplementation(() => new Promise(() => { })); // Simulate an ongoing fetch
+    //     render(<UserProfile />);
+
+    //     // Check for loading indicator
+    //     expect(screen.getByText(/loading/i)).toBeInTheDocument(); // Adjust this according to your loading indicator text
+    // });
+
+
+
+    test('displays error message on fetch failure', async () => {
+        fetchUserProfile.mockImplementation(() => Promise.reject(new Error('Failed to fetch profile')));
+
+        render(<UserProfile />);
+
+        await waitFor(() => expect(screen.getByText(/error: failed to fetch profile/i)).toBeInTheDocument());
+    });
+
+    // test('displays user profile information on successful fetch', async () => {
+    //     fetchUserProfile.mockResolvedValueOnce(mockProfile);
+
+    //     render(<UserProfile />);
+
+    //     // Wait for the profile to be displayed
+    //     await waitFor(() => {
+    //         expect(screen.getByText(mockProfile.name)).toBeInTheDocument();
+    //         expect(screen.getByText(mockProfile.email)).toBeInTheDocument();
+    //         expect(screen.getByDisplayValue(mockProfile.gender)).toBeInTheDocument();
+    //         expect(screen.getByDisplayValue(mockProfile.dob)).toBeInTheDocument();
+    //         expect(screen.getByDisplayValue(mockProfile.phone)).toBeInTheDocument();
+    //         expect(screen.getByDisplayValue(mockProfile.address)).toBeInTheDocument();
+    //     });
+    // });
+
+
+
+    test('toggles edit mode on button click', async () => {
+        fetchUserProfile.mockResolvedValueOnce(mockProfile);
+
+        render(<UserProfile />);
+
+        await waitFor(() => screen.getByText(mockProfile.name));
+
+        const editButton = screen.getByText(/edit profile/i);
+        fireEvent.click(editButton);
+
+        expect(screen.getByLabelText(/full name/i)).toBeEnabled();
+        expect(screen.getByLabelText(/gender/i)).toBeEnabled();
+
+        fireEvent.click(screen.getByText(/cancel/i));
+
+        expect(screen.getByLabelText(/full name/i)).toHaveAttribute('readonly');
+    });
+
+
+
+
+    // test('submits profile update form successfully', async () => {
+    //     fetchUserProfile.mockResolvedValueOnce(mockProfile);
+    //     axios.put.mockResolvedValueOnce({ data: { success: true } });
+
+    //     render(<UserProfile />);
+
+    //     await waitFor(() => screen.getByText(mockProfile.name));
+
+    //     fireEvent.click(screen.getByText(/edit profile/i));
+
+    //     const nameInput = screen.getByLabelText(/full name/i);
+    //     fireEvent.change(nameInput, { target: { value: 'Nhat Kim Updated' } }); // Updated name
+
+    //     const saveButton = screen.getByText('Save');
+    //     fireEvent.click(saveButton);
+
+    //     await waitFor(() => expect(axios.put).toHaveBeenCalledWith(
+    //         'http://localhost:5000/api/users/editUserProfile',
+    //         {
+    //             name: 'Nhat Kim Updated',
+    //             email: mockProfile.email,
+    //             gender: mockProfile.gender,
+    //             dob: mockProfile.dob,
+    //             phone: mockProfile.phone,
+    //             address: mockProfile.address
+    //         },
+    //         { headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZmZmZGNhMmNjMmVmZjgzMDAyOTllMCIsImlhdCI6MTcyODE0NjUyOH0.OacIYgig18pFz4SacaSLq86Tyyjki2GjaXwebxkGDHo` } }
+    //     ));
+    // });
+
+
+
+    // test('displays success message on profile update', async () => {
+    //     fetchUserProfile.mockResolvedValueOnce(mockProfile);
+    //     axios.put.mockResolvedValueOnce({ data: { success: true } });
+    //     render(<UserProfile />);
+    //     await waitFor(() => screen.getByText(mockProfile.name));
+    //     fireEvent.click(screen.getByText(/edit profile/i));
+    //     const nameInput = screen.getByLabelText(/full name/i);
+    //     fireEvent.change(nameInput, { target: { value: 'Nhat Kim Updated' } });
+    //     const saveButton = screen.getByRole('button', { name: /save/i });
+    //     fireEvent.click(saveButton);
+    //     await waitFor(() => {
+    //         expect(screen.getByText(/profile updated successfully/i)).toBeInTheDocument();
+    //     });
+    // });
+
+
+
+    test('submits password change form successfully', async () => {
+        fetchUserProfile.mockResolvedValueOnce(mockProfile);
+        axios.put.mockResolvedValueOnce({ data: { success: true } });
+
+        render(<UserProfile />);
+
+        await waitFor(() => screen.getByText(mockProfile.name));
+
+        const changePasswordButton = screen.getByText(/change password/i);
+        fireEvent.click(changePasswordButton);
+
+        const currentPasswordInput = screen.getByLabelText(/current password/i);
+        fireEvent.change(currentPasswordInput, { target: { value: mockProfile.password } });
+
+        const newPasswordInput = screen.getByLabelText(/new password/i);
+        fireEvent.change(newPasswordInput, { target: { value: 'newpassword123' } });
+
+        fireEvent.click(screen.getByText(/save change/i));
+
+        await waitFor(() => expect(axios.put).toHaveBeenCalledWith(
+            'http://localhost:5000/api/users/changePassword',
+            {
+                currentPassword: mockProfile.password,
+                newPassword: 'newpassword123',
+            },
+            {
+                headers: {
+                    Authorization: `Bearer testToken`,
+                },
+            }
+        ));
+    });
+
+
+    // test('displays error message on password change failure', async () => {
+    //     // Mock the axios put request to simulate an error
+    //     axios.put.mockRejectedValue({ response: { data: { msg: 'failed to change password' } } });
+
+    //     render(<UserProfile />);
+
+    //     // Assuming the password fields have been filled in
+    //     fireEvent.change(screen.getByLabelText(/current password/i), { target: { value: 'wrongpassword' } });
+    //     fireEvent.change(screen.getByLabelText(/new password/i), { target: { value: 'newpassword' } });
+
+    //     fireEvent.click(screen.getByText(/save change/i));
+
+    //     await waitFor(() => {
+    //         expect(screen.getByText(/error: failed to change password/i)).toBeInTheDocument();
+    //     });
+    // });
+
+});

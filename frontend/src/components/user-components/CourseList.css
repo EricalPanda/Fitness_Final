@@ -1,0 +1,125 @@
+.courses-list-container {
+    max-width: 1200px;
+    /* Limit the width for better readability */
+    margin: 0 auto;
+    /* Center the container */
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.courses-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: #ff8800;
+    /* Change to a primary color */
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    /* Space between cards */
+}
+
+.course-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    background-color: #ffffff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    /* Elevate card on hover */
+}
+
+.course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.course-coach {
+    font-size: 1rem;
+    color: #666;
+}
+
+.course-description {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #555;
+}
+
+.course-workouts h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #ff7b00;
+    /* Change to a primary color */
+}
+
+.course-workouts ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.course-workouts li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+    /* Add divider between workouts */
+}
+
+.details-btn {
+    margin-top: auto;
+    padding: 10px;
+    text-align: center;
+    background-color: #ff5e00;
+    /* Primary button color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.details-btn:hover {
+    background-color: #f39f3e;
+    /* Darker shade on hover */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    padding: 10px 15px;
+    margin: 0 10px;
+    border: 1px solid #007BFF;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #007BFF;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.pagination-btn:hover {
+    background-color: #007BFF;
+    /* Button background on hover */
+    color: #fff;
+}
+
+.page-info {
+    font-size: 1rem;
+}

@@ -1,0 +1,218 @@
+.survey-container {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+.survey-box {
+    width: 100%;
+    max-width: 1000px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    min-height: 500px;
+    /* Chiều cao tối thiểu */
+}
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.survey-form {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.survey-controller {
+    margin-top: 20px;
+}
+
+.survey-content {
+    padding: 20px;
+    min-height: 400px;
+    /* Chiều cao tối thiểu cho màn hình lớn */
+}
+
+.survey-question {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.survey-question {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.survey-controller {
+    background-color: #fefefe;
+    padding: 10px;
+}
+
+.survey-controller .btn {
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.progress-bar-wrapper {
+    height: 5px;
+    background: #f5f5f5;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to left, #4CB8C4, #3CD3AD);
+    transition: width 0.5s ease-in-out;
+}
+
+.mm-survey-item {
+    background: #fff;
+    margin-bottom: 15px;
+}
+
+.mm-survey-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.mm-survey-item input[type="radio"] {
+    display: none;
+    /* Ẩn input radio mặc định */
+}
+
+.mm-survey-item input[type="radio"]+label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mm-survey-item input[type="radio"]+label .radio-circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.mm-survey-item input[type="radio"]:checked+label .radio-circle {
+    background-color: transparent;
+    border: 2px solid #3DD2AF;
+}
+
+.mm-survey-item input[type="radio"]:checked+label .radio-circle::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #3DD2AF;
+    border-radius: 50%;
+    margin: 3.5px;
+}
+
+.radio-text {
+    margin: 0;
+    color: #666;
+    font-size: 16px;
+}
+
+.radio-circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #333;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.radio-text {
+    display: inline-block;
+    margin: 0;
+}
+
+.mm-dynamic-form-item .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+@media (max-width: 768px) {
+    .survey-content {
+        padding: 15px;
+        min-height: 300px;
+        /* Giảm chiều cao tối thiểu cho màn hình nhỏ hơn (tablet) */
+    }
+}
+
+@media (max-width: 576px) {
+    .survey-content {
+        padding: 10px;
+        min-height: 250px;
+        /* Giảm chiều cao tối thiểu cho màn hình nhỏ hơn (mobile) */
+    }
+}
+
+@media (max-width: 992px) {
+    .survey-box {
+        max-width: 700px;
+        /* Giảm chiều rộng cho màn hình lớn hơn tablet */
+        min-height: 450px;
+        /* Giảm chiều cao cho màn hình lớn hơn tablet */
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .survey-box {
+        max-width: 600px;
+        /* Giảm chiều rộng cho tablet */
+        min-height: 400px;
+        /* Giảm chiều cao cho tablet */
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .survey-box {
+        max-width: 90%;
+        /* Sử dụng phần trăm để đảm bảo phù hợp với các màn hình nhỏ */
+        min-height: 350px;
+        /* Chiều cao tối thiểu cho màn hình di động */
+        padding: 10px;
+        /* Giảm padding để phù hợp với màn hình nhỏ */
+    }
+}
+
+@media (max-width: 768px) {
+    .survey-content {
+        padding: 15px;
+        min-height: 300px;
+        /* Giảm chiều cao tối thiểu cho màn hình nhỏ hơn (tablet) */
+    }
+}
+
+@media (max-width: 576px) {
+    .survey-content {
+        padding: 10px;
+        min-height: 250px;
+        /* Giảm chiều cao tối thiểu cho màn hình nhỏ hơn (mobile) */
+    }
+}

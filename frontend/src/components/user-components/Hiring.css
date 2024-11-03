@@ -1,0 +1,98 @@
+.coach-hiring-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.form-step {
+    margin-bottom: 30px;
+}
+
+.step-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.input-file {
+    display: block;
+    margin-top: 10px;
+}
+
+.file-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.preview-img {
+    display: block;
+    margin-top: 10px;
+    max-width: 200px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.step-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.btn-next,
+.btn-back,
+.btn-submit,
+.btn-capture,
+.btn-retake {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.btn-back {
+    background-color: #6c757d;
+}
+
+.btn-submit {
+    background-color: #28a745;
+}
+
+.btn-next:hover,
+.btn-back:hover,
+.btn-submit:hover,
+.btn-capture:hover,
+.btn-retake:hover {
+    background-color: #0056b3;
+}
+
+.camera-container {
+    text-align: center;
+}
+
+.webcam {
+    margin-bottom: 10px;
+}
